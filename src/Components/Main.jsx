@@ -1,5 +1,12 @@
 import { Close, Menu } from "@mui/icons-material";
-import { Box, MenuItem, MenuList, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  MenuItem,
+  MenuList,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import TrendyPic1 from "../assets/image/image1.jpg";
 import TrendyPic2 from "../assets/image/image2.jpg";
@@ -32,57 +39,59 @@ export default function Main() {
     })();
   }, []);
 
-  const items = data?.filter((e) => e.id % 2 === 0).map((e, index) => {
-    return (
-      <>
-        <Atropos
-          activeOffset={40}
-          shadowScale={1.05}
-          onEnter={() => console.log("Enter")}
-          onLeave={() => console.log("Leave")}
-          onRotate={(x, y) => console.log("Rotate", x, y)}
-        >
-          <Box
-            id="card"
-            position={"relative"}
-            minWidth={"200px"}
-            minHeight={"200px"}
-            overflow={"hidden"}
-            borderRadius={"10px"}
-            sx={{
-              "&:hover #card2": {
-                opacity: 0.8,
-                transition: "all 1s",
-                backgroundColor: "#000000c0",
-              },
-            }}
+  const items = data
+    ?.filter((e) => e.id >= 1 && e.id <= 8)
+    .map((e, index) => {
+      return (
+        <>
+          <Atropos
+            activeOffset={40}
+            shadowScale={1.05}
+            onEnter={() => console.log("Enter")}
+            onLeave={() => console.log("Leave")}
+            onRotate={(x, y) => console.log("Rotate", x, y)}
           >
-            <img
-              key={index}
-              src={e.image}
-              alt=""
-              width={"300px"}
-              height={"200px"}
-            />
             <Box
-              id="card2"
-              position={"absolute"}
-              left={0}
-              top={0}
-              bgcolor={"#0000006c"}
-              width={"100%"}
-              zIndex={100}
-              height={"100%"}
+              id="card"
+              position={"relative"}
+              width={"250px"}
+              height={"250px"}
+              overflow={"hidden"}
+              borderRadius={"10px"}
               sx={{
-                transition: "all 1s",
-                opacity: 0.6,
+                "&:hover #card2": {
+                  opacity: 0.8,
+                  transition: "all 1s",
+                  backgroundColor: "#000000c0",
+                },
               }}
-            ></Box>
-          </Box>
-        </Atropos>
-      </>
-    );
-  });
+            >
+              <img
+                key={index}
+                src={e.image}
+                alt=""
+                width={"100%"}
+                height={"100%"}
+              />
+              <Box
+                id="card2"
+                position={"absolute"}
+                left={0}
+                top={0}
+                bgcolor={"#0000006c"}
+                width={"100%"}
+                zIndex={100}
+                height={"100%"}
+                sx={{
+                  transition: "all 1s",
+                  opacity: 0.6,
+                }}
+              ></Box>
+            </Box>
+          </Atropos>
+        </>
+      );
+    });
 
   return (
     <>
@@ -108,6 +117,7 @@ export default function Main() {
           height={"100vh"}
           bgcolor={"#000000e4"}
           position={"absolute"}
+          zIndex={10000}
           sx={
             menu
               ? { left: "0", top: "0", transition: "all 1s" }
@@ -306,7 +316,7 @@ export default function Main() {
           Festival Collection
         </Typography>
         <Box
-          width={"100%"}
+          width={"95%"}
           height={"100%"}
           border={"2px solid #b1b1b1"}
           borderRadius={"12px"}
@@ -316,10 +326,124 @@ export default function Main() {
           justifyContent={"space-evenly"}
           padding={"10px"}
           gap={"20px"}
+          margin={"auto"}
         >
           {items}
         </Box>
       </Stack>
+
+      <Box
+        display={"flex"}
+        width={"100%"}
+        height={"450px"}
+        marginTop={"250px"}
+        alignItems={"center"}
+        justifyContent={"space-evenly"}
+      >
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          minWidth={"40%"}
+          height={"100%"}
+          alignItems={"center"}
+          justifyContent={"space-evenly"}
+        >
+          <Typography
+            letterSpacing={"5px"}
+            fontSize={"20px"}
+            fontWeight={"bold"}
+            color="#b1b1b1"
+          >
+            Visit our store in New York’s trendy neighborhood. <br /> It’s one
+            of the liveliest shopping districts around.
+          </Typography>
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+            width={"100%"}
+            gap={2}
+            marginTop={"40px"}
+          >
+            <Box width={"50%"}>
+              <Typography color="#b1b1b1" marginLeft={"2px"}>
+                Email
+              </Typography>
+              <input
+                type="text"
+                style={{
+                  width: "100%",
+                  height: "45px",
+                  border: "none",
+                  borderRadius: "2px",
+                  paddingLeft: "5px",
+                  backgroundColor: "#d1d1d1",
+                }}
+                placeholder="Enter a Valid email address"
+              />
+            </Box>
+            <Box width={"50%"}>
+              <Typography color="#b1b1b1" marginLeft={"2px"}>
+                Name
+              </Typography>
+              <input
+                type="text"
+                style={{
+                  width: "100%",
+                  height: "45px",
+                  border: "none",
+                  borderRadius: "2px",
+                  paddingLeft: "5px",
+                  backgroundColor: "#d1d1d1",
+                }}
+                placeholder="Enter your Name"
+              />
+            </Box>
+          </Box>
+          <Box width={"100%"} marginTop={"15px"}>
+            <Typography color="#b1b1b1" marginLeft={"2px"}>
+              Message
+            </Typography>
+            <textarea
+              placeholder="Enter your Message"
+              style={{
+                width: "731px",
+                height: "150px",
+                maxHeight: "180px",
+                maxWidth: "731px",
+                borderRadius: "2px",
+                padding: "5px",
+                backgroundColor: "#d1d1d1",
+              }}
+            ></textarea>
+          </Box>
+          <Button
+            sx={{
+              marginTop: "25px",
+              color: "#16191d",
+              backgroundColor: "#b1b1b1",
+              padding: "9px 100px",
+              fontSize: "16px",
+            }}
+          >
+            Submit
+          </Button>
+        </Box>
+      </Box>
+
+      <Box
+        width={"100%"}
+        height={"90px"}
+        bgcolor={"#b1b1b18f"}
+        marginTop={"100px"}
+        display={"flex"}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        <Typography fontSize={"14px"} color="#16191d">
+          Copyright © 2017 All Rights Reserved
+        </Typography>
+      </Box>
     </>
   );
 }
