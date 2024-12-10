@@ -15,8 +15,10 @@
     "@mui/icons-material": "^6.1.10",
     "@mui/material": "^6.1.10",
     "atropos": "^2.0.2",
+    "boxicons": "^2.1.4",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-loader-spinner": "^6.1.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
